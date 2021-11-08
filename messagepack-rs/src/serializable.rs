@@ -133,7 +133,7 @@ pub trait Serializable: Sized {
     }
 
     fn serialize_int16(v: i16) -> Result<Vec<u8>, SerializeError> {
-        if v >= -0b0010_0000 {
+        if v >= -0b0010_0000 && v < 0b1000_0000 {
             let mut w = Vec::with_capacity(1);
             w.write_i8(v as i8).or(Err(SerializeError::FailedToWrite))?;
             Ok(w)
@@ -151,7 +151,7 @@ pub trait Serializable: Sized {
     }
 
     fn serialize_int32(v: i32) -> Result<Vec<u8>, SerializeError> {
-        if v >= -0b0010_0000 {
+        if v >= -0b0010_0000 && v < 0b1000_0000 {
             let mut w = Vec::with_capacity(1);
             w.write_i8(v as i8).or(Err(SerializeError::FailedToWrite))?;
             Ok(w)
@@ -174,7 +174,7 @@ pub trait Serializable: Sized {
     }
 
     fn serialize_int64(v: i64) -> Result<Vec<u8>, SerializeError> {
-        if v >= -0b0010_0000 {
+        if v >= -0b0010_0000 && v < 0b1000_0000 {
             let mut w = Vec::with_capacity(1);
             w.write_i8(v as i8).or(Err(SerializeError::FailedToWrite))?;
             Ok(w)
